@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="rectangle" width="400" height="200" style="border:1px solid
+    #d3d3d3;"></canvas>
+    <script>
+        let myRectangle = {
+            length: 100,
+            width: 200,
+            area: function () {
+                return (myRectangle.length * myRectangle.width);
+            },
+            perimeter: function () {
+                return (myRectangle.length + myRectangle.width) * 2
+            },
+            draw: function () {
+                let ctx = document.getElementById("rectangle").getContext("2d");
+                let x = Math.floor(Math.random()*window.innerHeight);
+                let y = Math.floor(Math.random()*window.innerHeight);
+                ctx.beginPath();
+                ctx.rect(x, y, myRectangle.width, myRectangle.length);
+                ctx.stroke();
+            }
+        }
+        myRectangle.draw();
+        document.write("<br>");
+        document.write("Rectangle's area: " + myRectangle.area());
+        document.write("<br>");
+        document.write("Rectangle's perimeter: " + myRectangle.perimeter());
+    </script>
+</body>
+
+</html>
