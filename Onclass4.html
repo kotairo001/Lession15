@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* #car {
+            position: absolute;;
+            left: 0;
+            top: 0;
+            width: 70px;
+        } */
+    </style>
+</head>
+<body onload="docReady()">
+    <h3 style="text-align: center;" id="point"></h3>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/1200px-Circle-icons-car.svg.png" alt="" 
+    id="car" style="position:relative;left:0; top:0;"
+    width="60"/>
+    <img src="https://cdn-icons-png.flaticon.com/512/217/217853.png" alt="" id="coin" style="position:relative;left:100px; top:100px;"
+    width="50"/>    
+    <img src="https://static.thenounproject.com/png/589987-200.png" alt="" id="boom" style="position:relative;left:150px; top:150px;"
+    width="50"/>
+</body>
+<script>
+    let count = 0;
+    let point = document.getElementById("point");
+    var element = document.getElementById("car");
+    var boom = document.getElementById("boom");
+    function moveRight () {
+        element.style.left=parseInt(element.style.left) + 5 +"px";
+    }
+    function moveLeft () {
+        element.style.left=parseInt(element.style.left) - 5 +"px";
+    }
+    function moveDown () {
+        element.style.top=parseInt(element.style.top) + 5 +"px";
+    }
+    function moveUp () {
+        element.style.top=parseInt(element.style.top) - 5 +"px";
+    }
+    function meetCoin() {
+        if (parseInt(element.style.left)==130 && parseInt(element.style.top)==105){
+            count++;
+            point.innerHTML = "Point: " +  count;
+        }
+    }
+    function meetBoom() {
+        if (parseInt(element.style.left)==260 && parseInt(element.style.top)==125){
+            element.src = "/Lession15/img/boom.png";
+            boom.src = "/Lession15/img/boom.png";
+            point.innerHTML = "You Lose!";
+        }
+    }
+
+    function moveSelection(evt) {
+        switch (evt.keyCode) {
+            case 37:
+                moveLeft();
+                break;
+            case 39: 
+                moveRight();
+                break;
+            case 38: 
+                moveUp();
+                break;
+            case 40: 
+                moveDown();
+                break;  
+            // case 17:
+            //     raiseSpeed();
+            //     break;
+        }
+        meetCoin();
+        meetBoom();
+    }
+    function docReady () {
+        window.addEventListener('keydown', moveSelection);
+    }
+</script>
+</html>
