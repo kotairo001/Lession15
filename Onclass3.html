@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="/Lession15/img/iphone.png" alt=""
+    width="150">
+    <script>
+        let Mobile = function(battery,draftText, receiveText,sentText,status) { 
+            this.batteryStatus = function() {
+                return battery + "%";
+                if (battery>100){
+                    alert("Can't read this range");
+                }
+            },
+            this.draftText = draftText,
+            this.receiveText = receiveText,
+            this.sentText = sentText,
+            this.status = function(){
+                if (status=="on") {
+                    console.log(true) ;
+                } else if (status=="off") {
+                    console.log(false)
+                }
+                console.log ("Your battery is: " + (battery-=1) + "%");
+            },
+            this.onOff = function(button) {
+                if(button == "on") {
+                    alert("Your phone is on");
+                } else if (button == "off") {
+                    alert("Your phone is off");
+                }
+            }
+            this.chargeBattery = function(num){
+                if(battery<15) {
+                    alert("Your phone is low-battery");
+                    console.log(num + "%") ;
+                    battery = num;
+                }
+            }
+            this.writeMessage = function(message){
+                console.log(message) ;
+                console.log ("Your battery is: " + (battery-=1) + "%");
+            },
+            this.receiveMessage = function(phone) {
+                console.log("You have a message from " + phone) ;
+                console.log ("Your battery is: " + (battery-=1) + "%");
+            }
+            this.sentMessage = function(phone) {
+                console.log("You have sent message to " + phone) ;
+                console.log ("Your battery is: " + (battery-=1) + "%");
+            }
+            this.seeMessage = function() {
+                console.log("You have recevied these message: " + this.receiveText);
+                console.log ("Your battery is: " + (battery-=1) + "%");
+            }
+            this.seeSentMessage = function() {
+                console.log("You have sent these message: " + this.sentText) ;
+                console.log ("Your battery is: " + (battery-=1) + "%");
+            }
+            this.notActive = function () {
+                if (status="off") {
+                    this.onOff = false;
+                    this.chargeBattery = false;
+                    this.writeMessage = false;
+                    this.receiveMessage = false;
+                    this.sentMessage = false;
+                    this.seeMessage = false;
+                    this.seeSentMessage = false;
+                }
+                console.log(this.onOff,this.chargeBattery,this.writeMessage,this.receiveMessage,this.sentMessage,this.seeMessage,this.seeSentMessage)
+            }
+
+        }
+        let iphone = new Mobile(10,["Hell","Hate","I Miss"],["Hello","My Lady"],["Hi","What do you do?"],"off");
+        console.log(iphone.draftText);
+        iphone.seeMessage();
+        iphone.seeSentMessage();
+        iphone.chargeBattery(100)
+        iphone.onOff("off")
+        // iphone.notActive();
+
+    </script>
+</body>
+</html>
